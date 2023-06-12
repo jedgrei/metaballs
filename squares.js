@@ -1,6 +1,7 @@
 const res = 10;
 
 let grid = [];
+let thresh = 1;
 
 function metaball_sample(cs, w, h) {
     // sample into grid
@@ -19,7 +20,8 @@ function metaball_sample(cs, w, h) {
     }
 }
 
-function marching_squares(ctx, color, thresh) {
+function marching_squares(ctx, color, thr) {
+    thresh = thr;
     ctx.fillStyle = color;
     for(let i = 0; i < grid.length - 1; ++i) {
         let y = i * res;
@@ -66,7 +68,7 @@ function polygon(ctx, i, j, x, y, ...points) {
 
 // returns from 0-res
 function cornerlerp(i1, j1, i2, j2) {
-    let r = res * (1-grid[i1][j1]) / (grid[i2][j2]-grid[i1][j1]);
+    let r = res * (1-grid[i1][j1]/thresh) / (grid[i2][j2]/thresh-grid[i1][j1]/thresh);
     return r;
     // return res/2;
 }
