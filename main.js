@@ -3,6 +3,7 @@ c.width = document.documentElement.clientWidth;
 c.height = document.documentElement.clientHeight;
 let ctx = c.getContext("2d");
 
+let bg_color = "#ffffff";
 const num_circs = 50;
 const min_rad = c.width/60;
 const max_rad = c.width/30;
@@ -11,6 +12,8 @@ const lim_anv = Math.PI/20;
 const acc_anv = Math.PI/200;
 const dec_anv = 0.97;
 
+// let max_dim = Math.max(c.width, c.height);
+let max_dim = Math.sqrt(Math.pow(c.width,2), Math.pow(c.height,2))
 let all_circs = [];
 let all_layers = [];
 
@@ -21,7 +24,7 @@ function init_circs(params) {
             x: randint(0, c.width),
             y: randint(0, c.height),
             r: rand(params.min_rad, params.max_rad),
-            v: vel,
+            v: params.vel,
             a: rand(0, 2 * Math.PI),
             av: rand(-params.lim_anv, params.lim_anv),
         });
@@ -78,9 +81,9 @@ function set_background(color) {
 function add_circs(params) {
     // set defaults
     if(!('num' in params)) params.num = 30;
-    if(!('min_rad' in params)) params.min_rad = c.width/60;
-    if(!('max_rad' in params)) params.max_rad = c.width/30;
-    if(!('vel' in params)) params.vel = c.width/1000;
+    if(!('min_rad' in params)) params.min_rad = max_dim/60;
+    if(!('max_rad' in params)) params.max_rad = max_dim/30;
+    if(!('vel' in params)) params.vel = max_dim/1000;
     if(!('lim_anv' in params)) params.lim_anv = Math.PI/20;
     if(!('acc_anv' in params)) params.acc_anv = Math.PI/200;
     if(!('dec_anv' in params)) params.dec_anv = 0.97;

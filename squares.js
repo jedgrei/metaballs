@@ -1,4 +1,4 @@
-const res = 10;
+const res = 15;
 
 let grid = [];
 let thresh = 1;
