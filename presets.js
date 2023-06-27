@@ -48,6 +48,7 @@ const presets = {
     "solar": preset_solar,
     "watermelon": preset_watermelon,
     "purple": preset_purple,
+    "random": random_preset
 }
 
 function random_preset() {
@@ -63,7 +64,7 @@ function random_preset() {
             preset_watermelon();
             break;
         case 3:
-            preset_dark();
+            preset_purple();
             break;
     }
 }
